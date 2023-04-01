@@ -27,17 +27,8 @@ public class ClienteService {
     }
 
     public ClienteDto obtenerCliente(int id){
-        ClienteDto clienteDTO = new ClienteDto();
         Cliente cliente = clienteRepository.findById(id).orElseThrow(() -> {throw new RuntimeException("Cliente no existe");});
-        clienteDTO.setNombre(cliente.getNombre());
-        clienteDTO.setApellidos(cliente.getApellidos());
-        clienteDTO.setTelefono(cliente.getTelefono());
-        clienteDTO.setIdentificacion(cliente.getIdentificacion());
-        clienteDTO.setId(cliente.getId());
-        clienteDTO.setPaisResidencia(cliente.getPaisResidencia());
-        clienteDTO.setDireccion(cliente.getDireccion());
-        clienteDTO.setEstado(cliente.getEstado());
-        return clienteDTO;
+        return fromClienteToDto(cliente);
     }
 
     public List<ClienteDto> listarTodosLosClientes(){
